@@ -26,79 +26,22 @@ This is a simple task management application built using **Flutter** for the fro
     - RESTful API for communication between the frontend and backend.
     - Secure user authentication and task data storage.
 
-## How It Works
+## Screenshots
 
-1. **User Authentication**:
-    - On the login/register page, users can sign up or log in using a username (currently used as the login) and password.
-    - Authentication is handled by the Spring Boot backend.
+### Login Page
+![Login Screenshot](path_to_login_screenshot)
 
-2. **Task Management**:
-    - After logging in, users can view their list of tasks.
-    - Each task consists of a **title** and a **short description**.
-    - Users can mark tasks as completed or search through their existing tasks.
-    - New tasks can be added via a form that captures the task title and description.
+### Task List
+![Task List Screenshot](path_to_task_list_screenshot)
 
-## Setup & Installation
+### Add New Task
+![Add Task Screenshot](path_to_add_task_screenshot)
 
-### Prerequisites
+## TODO
 
-- **Flutter SDK** installed for running the frontend.
-- **JDK** and **Maven** installed for building and running the Spring Boot backend.
-- A **MySQL/PostgreSQL/Any SQL** database for storing user and task data.
-
-### Frontend (Flutter)
-
-1. Clone the repository:
-    ```bash
-    git clone <repo_url>
-    ```
-
-2. Navigate to the Flutter app directory:
-    ```bash
-    cd flutter-app
-    ```
-
-3. Install the dependencies:
-    ```bash
-    flutter pub get
-    ```
-
-4. Run the Flutter app:
-    ```bash
-    flutter run
-    ```
-
-### Backend (Spring Boot)
-
-1. Navigate to the backend directory:
-    ```bash
-    cd spring-boot-backend
-    ```
-
-2. Install Maven dependencies:
-    ```bash
-    mvn clean install
-    ```
-
-3. Configure the `application.properties` file with your database connection details:
-    ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/taskdb
-    spring.datasource.username=<your-username>
-    spring.datasource.password=<your-password>
-    ```
-
-4. Run the Spring Boot application:
-    ```bash
-    mvn spring-boot:run
-    ```
-
-## API Endpoints
-
-- **User Authentication**:
+- **API Endpoints**:
     - `POST /api/auth/register`: Register a new user.
     - `POST /api/auth/login`: Log in a user.
-
-- **Task Management**:
     - `GET /api/tasks`: Retrieve the list of tasks.
     - `POST /api/tasks`: Add a new task.
     - `PUT /api/tasks/{id}`: Mark a task as completed.
