@@ -30,8 +30,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => LoginPageBloc()),
         BlocProvider(create: (context) => PasswordVisibilityCubit()),
-        BlocProvider(create: (context) => LoginPageBloc())
       ],
       child: Scaffold(
         backgroundColor: Colors.cyan.shade50,
@@ -186,9 +186,18 @@ class _LoginPageState extends State<LoginPage> {
                       return Container();
                     },
                     listener: (context, state) {
-                      print(state);
                       if (state is LoginPageCredentialsApproved) {
                         context.goNamed("tasksPage");
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Center(child: Text("Logged In Successfully")),
+                          backgroundColor: Colors.green,
+                        ));
+                      } else if (state is LoginPageCredentialsRejected) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Center(child: Text("Incorrect Credentials")),
+                          backgroundColor: Colors.red,
+                        ));
                       }
                     },
                   ),

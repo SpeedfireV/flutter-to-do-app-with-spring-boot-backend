@@ -47,6 +47,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               ),
               SizedBox(height: 80),
               TextFormField(
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                     filled: true,
                     hintText: "Title",
@@ -65,6 +66,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               ),
               SizedBox(height: 16),
               TextFormField(
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                     filled: true,
                     hintText: "Description",
@@ -92,7 +94,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
                       ),
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Center(child: Text("Add Task")),
+                          content:
+                              Center(child: Text("Task Added Successfully")),
                           backgroundColor: Colors.green,
                         ));
                       },

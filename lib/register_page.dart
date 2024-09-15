@@ -112,29 +112,32 @@ class _RegisterPageState extends State<RegisterPage> {
                               },
                             ),
                             SizedBox(height: 24),
-                            SizedBox(
-                                width: double.infinity,
-                                height: 70,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      surfaceTintColor: Colors.yellow.shade300,
-                                      elevation: 7,
-                                      backgroundColor: Colors.yellow.shade300,
-                                      shape: BeveledRectangleBorder(),
-                                    ),
-                                    onPressed: () {
-                                      context.read<RegisterPageBloc>().add(
-                                          RegisterPageRegisterClicked(
-                                              registerController.text,
-                                              passwordController.text));
-                                    },
-                                    child: Text(
-                                      "Sign Up",
-                                      style: TextStyle(
-                                          color: Colors.grey.shade700,
-                                          fontSize: 21,
-                                          fontWeight: FontWeight.w600),
-                                    ))),
+                            Builder(builder: (context) {
+                              return SizedBox(
+                                  width: double.infinity,
+                                  height: 70,
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        surfaceTintColor:
+                                            Colors.yellow.shade300,
+                                        elevation: 7,
+                                        backgroundColor: Colors.yellow.shade300,
+                                        shape: BeveledRectangleBorder(),
+                                      ),
+                                      onPressed: () {
+                                        context.read<RegisterPageBloc>().add(
+                                            RegisterPageRegisterClicked(
+                                                registerController.text,
+                                                passwordController.text));
+                                      },
+                                      child: Text(
+                                        "Sign Up",
+                                        style: TextStyle(
+                                            color: Colors.grey.shade700,
+                                            fontSize: 21,
+                                            fontWeight: FontWeight.w600),
+                                      )));
+                            }),
                             SizedBox(height: 16),
                             Text("OR"),
                             TextButton(
@@ -159,8 +162,6 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               BlocConsumer<RegisterPageBloc, RegisterPageState>(
                 builder: (context, state) {
-                  RegisterPageRegisterClicked(
-                      registerController.text, passwordController.text);
                   if (state is RegisterPageCheckingCredentials) {
                     return Container(
                       color: Colors.cyan.withOpacity(0.1),
@@ -174,16 +175,24 @@ class _RegisterPageState extends State<RegisterPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.check, size: 36),
-                        Center(child: Text("Login Approved")),
+                        Center(child: Text("Register Approved")),
                       ],
                     );
                   }
                   return Container();
                 },
                 listener: (context, state) {
-                  print(state);
                   if (state is RegisterPageCredentialsApproved) {
                     context.goNamed("tasksPage");
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Center(child: Text("Logged In Successfully")),
+                      backgroundColor: Colors.green,
+                    ));
+                  } else if (state is RegisterPageCredentialsRejected) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Center(child: Text("Incorrect Credentials")),
+                      backgroundColor: Colors.red,
+                    ));
                   }
                 },
               ),
