@@ -6,7 +6,7 @@ part 'tasks_list_state.dart';
 
 class TasksListBloc extends Bloc<TasksListEvent, TasksListState> {
   TasksListBloc() : super(TasksListInitial()) {
-    on<TasksListEvent>((event, emit) {
+    on<TasksListLoadTasks>((event, emit) {
       // TODO: implement event handler
     });
   }

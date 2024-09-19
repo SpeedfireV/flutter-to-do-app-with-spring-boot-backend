@@ -39,6 +39,10 @@ dependencies:
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
   go_router: ^14.2.7
+  http: ^1.2.2
+  json_serializable: ^6.8.0
+  build_runner: ^2.4.11
+  freezed: ^2.5.2
 
 
 dev_dependencies:
